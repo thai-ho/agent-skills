@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thai-ho.github.io/agent-skills/schemas/scope.schema.json",
+  "type": "object",
+  "required": ["entryNodeId", "roots", "dependencies", "exclusions", "approval"],
+  "properties": {
+    "entryNodeId": { "$ref": "common.schema.json#/$defs/id" },
+    "roots": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/id" } },
+    "dependencies": { "type": "array", "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/id" } },
+    "exclusions": { "type": "array", "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/id" } },
+    "approval": { "type": "object", "required": ["id", "recordedAt", "provenance", "approvedRoots", "destination"],
+      "properties": {
+        "id": { "$ref": "common.schema.json#/$defs/id" },
+        "recordedAt": { "type": "string", "format": "date-time" },
+        "provenance": { "type": "string", "minLength": 1 },
+        "approvedRoots": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/id" } },
+        "approvedDependencies": { "type": "array", "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/id" } },
+        "destination": { "type": "string", "minLength": 1 }
+      }, "additionalProperties": false }
+  }, "additionalProperties": false
+}

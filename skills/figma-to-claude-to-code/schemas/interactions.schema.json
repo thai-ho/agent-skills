@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thai-ho.github.io/agent-skills/schemas/interactions.schema.json",
+  "type": "object", "required": ["capability", "interactions"],
+  "properties": {
+    "capability": { "enum": ["available", "unavailable", "not-applicable"] },
+    "interactions": { "type": "array", "items": { "type": "object", "required": ["id", "sourceNodeId", "kind", "evidence"],
+      "properties": {
+        "id": { "$ref": "common.schema.json#/$defs/id" }, "sourceNodeId": { "$ref": "common.schema.json#/$defs/id" },
+        "targetNodeId": { "$ref": "common.schema.json#/$defs/id" }, "kind": { "type": "string" },
+        "details": { "type": "object" }, "evidence": { "$ref": "common.schema.json#/$defs/evidence" }
+      }, "additionalProperties": false }
+    }
+  }, "additionalProperties": false
+}

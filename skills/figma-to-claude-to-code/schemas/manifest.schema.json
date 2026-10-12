@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thai-ho.github.io/agent-skills/schemas/manifest.schema.json",
+  "type": "object",
+  "required": ["schemaVersion", "contractId", "revision", "producer", "exportedAt", "source", "approvalId", "coverage", "payload"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "contractId": { "$ref": "common.schema.json#/$defs/id" },
+    "revision": { "type": "integer", "minimum": 1 },
+    "producer": { "const": "claude-export" },
+    "exportedAt": { "type": "string", "format": "date-time" },
+    "source": {
+      "type": "object", "required": ["figmaUrl", "fileKey", "entryNodeId", "version"],
+      "properties": {
+        "figmaUrl": { "type": "string", "format": "uri" },
+        "fileKey": { "$ref": "common.schema.json#/$defs/id" },
+        "entryNodeId": { "$ref": "common.schema.json#/$defs/id" },
+        "version": { "type": ["string", "null"] },
+        "versionUnavailableReason": { "type": "string" }
+      }, "additionalProperties": false
+    },
+    "approvalId": { "$ref": "common.schema.json#/$defs/id" },
+    "coverage": {
+      "type": "array", "minItems": 1,
+      "items": { "type": "object", "required": ["id", "rootId", "state", "mode", "viewport", "status", "evidence"],
+        "properties": {
+          "id": { "$ref": "common.schema.json#/$defs/id" },
+          "rootId": { "$ref": "common.schema.json#/$defs/id" },
+          "state": { "type": "string" }, "mode": { "type": "string" },
+          "viewport": { "type": "object", "required": ["width", "height"], "properties": {
+            "width": { "type": "integer", "minimum": 1 }, "height": { "type": "integer", "minimum": 1 }
+          }, "additionalProperties": false },
+          "status": { "enum": ["present", "unavailable", "unresolved"] },
+          "framePath": { "$ref": "common.schema.json#/$defs/path" },
+          "referencePath": { "$ref": "common.schema.json#/$defs/path" },
+          "evidence": { "$ref": "common.schema.json#/$defs/evidence" }
+        }, "additionalProperties": false }
+    },
+    "payload": {
+      "type": "array", "minItems": 5,
+      "items": { "type": "object", "required": ["path", "role", "sha256"],
+        "properties": {
+          "path": { "$ref": "common.schema.json#/$defs/path" },
+          "role": { "enum": ["scope", "frame", "components", "tokens", "interactions", "unresolved", "reference", "asset", "evidence"] },
+          "sha256": { "$ref": "common.schema.json#/$defs/sha256" }
+        }, "additionalProperties": false }
+    }
+  }, "additionalProperties": false
+}
