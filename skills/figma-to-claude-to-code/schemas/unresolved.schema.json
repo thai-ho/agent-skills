@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thai-ho.github.io/agent-skills/schemas/unresolved.schema.json",
+  "type": "object", "required": ["issues"],
+  "properties": { "issues": { "type": "array", "items": { "type": "object", "required": ["id", "severity", "category", "question", "affectedCoverageIds"],
+    "properties": {
+      "id": { "$ref": "common.schema.json#/$defs/id" }, "severity": { "enum": ["blocking", "warning"] },
+      "category": { "type": "string" }, "question": { "type": "string", "minLength": 1 },
+      "affectedCoverageIds": { "type": "array", "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/id" } },
+      "affectedNodeIds": { "type": "array", "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/id" } }
+    }, "additionalProperties": false }
+  } }, "additionalProperties": false
+}

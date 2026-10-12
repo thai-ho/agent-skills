@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thai-ho.github.io/agent-skills/schemas/common.schema.json",
+  "$defs": {
+    "evidence": {
+      "type": "object",
+      "required": ["status", "source"],
+      "properties": {
+        "status": { "enum": ["confirmed", "inferred", "missing"] },
+        "source": { "type": "string", "minLength": 1 },
+        "basis": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "id": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "path": { "type": "string", "minLength": 1 },
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  }
+}

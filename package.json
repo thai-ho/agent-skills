@@ -1,0 +1,12 @@
+{
+  "name": "agent-skills-collection",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test skills/figma-to-claude-to-code/tests/*.test.mjs",
+    "doctor": "node skills/figma-to-claude-to-code/scripts/doctor.mjs",
+    "validate": "node skills/figma-to-claude-to-code/scripts/validate.mjs"
+  }
+}

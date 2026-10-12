@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thai-ho.github.io/agent-skills/schemas/tokens.schema.json",
+  "type": "object", "required": ["tokens", "modes", "capability"],
+  "properties": {
+    "capability": { "enum": ["available", "unavailable", "not-applicable"] },
+    "modes": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "tokens": { "type": "array", "items": { "type": "object", "required": ["id", "name", "type", "values", "evidence"],
+      "properties": {
+        "id": { "$ref": "common.schema.json#/$defs/id" }, "name": { "type": "string" },
+        "type": { "enum": ["color", "number", "string", "boolean", "typography", "effect"] },
+        "unit": { "type": "string" },
+        "values": { "type": "object", "additionalProperties": { "type": "object", "required": ["evidence"],
+          "properties": { "value": {}, "aliasOf": { "$ref": "common.schema.json#/$defs/id" },
+            "evidence": { "$ref": "common.schema.json#/$defs/evidence" }
+          }, "additionalProperties": false } },
+        "evidence": { "$ref": "common.schema.json#/$defs/evidence" }
+      }, "additionalProperties": false }
+    }
+  }, "additionalProperties": false
+}

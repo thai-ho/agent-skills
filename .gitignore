@@ -1,0 +1,8 @@
+node_modules/
+.DS_Store
+coverage/
+validation-output/
+# Real contracts and captures belong outside this public repository.
+private-design-contracts/
+design-contract/
+feedback.json
