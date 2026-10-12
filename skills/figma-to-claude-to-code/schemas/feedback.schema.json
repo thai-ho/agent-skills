@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thai-ho.github.io/agent-skills/schemas/feedback.schema.json",
+  "type": "object", "required": ["schemaVersion", "contractId", "revision", "manifestSha256", "iteration", "issues"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" }, "contractId": { "$ref": "common.schema.json#/$defs/id" },
+    "revision": { "type": "integer", "minimum": 1 }, "manifestSha256": { "$ref": "common.schema.json#/$defs/sha256" },
+    "iteration": { "type": "integer", "minimum": 1 },
+    "issues": { "type": "array", "items": { "type": "object", "required": ["id", "category", "severity", "status", "observed", "expected", "question"],
+      "properties": {
+        "id": { "$ref": "common.schema.json#/$defs/id" }, "category": { "type": "string" },
+        "severity": { "enum": ["blocking", "warning"] }, "status": { "enum": ["open", "resolved"] },
+        "nodeIds": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/id" } },
+        "coverageIds": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/id" } },
+        "observed": { "type": "string", "minLength": 1 }, "expected": { "type": "string", "minLength": 1 }, "question": { "type": "string", "minLength": 1 },
+        "artifacts": { "type": "array", "items": { "type": "object", "required": ["path", "sha256"],
+          "properties": { "path": { "$ref": "common.schema.json#/$defs/path" }, "sha256": { "$ref": "common.schema.json#/$defs/sha256" } },
+          "additionalProperties": false } }
+      }, "additionalProperties": false }
+    }
+  }, "additionalProperties": false
+}
