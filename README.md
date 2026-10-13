@@ -1,21 +1,17 @@
-# Agent Skills collection
+# Welcome to my brain cell
 
-Reusable, portable Agent Skills. The first package is [figma-to-claude-to-code](skills/figma-to-claude-to-code/SKILL.md), which moves a scoped, approved Figma design contract from Claude Code to a separate Codex implementation session. It does not connect the accounts or move data automatically.
+Little ideas I turn into tools when the same friction shows up one too many times.
 
-## Quick start
+Mostly built to make my own work easier. Shared here in case they make yours easier too.
 
-Requires Node.js 22 or later and pnpm 11. In this checkout:
+## Where it started
 
-```sh
-pnpm install --frozen-lockfile
-pnpm --dir skills/figma-to-claude-to-code install --frozen-lockfile
-node skills/figma-to-claude-to-code/scripts/install.mjs --agent both --scope user
-node skills/figma-to-claude-to-code/scripts/doctor.mjs
-pnpm test
-```
+The first one came from a split workflow: Figma context in Claude Code, implementation in my personal Codex. I wanted the design details to survive that handoff, so I could spend less time repeating context and more time building.
 
-For a project installation, use `--scope project --project /absolute/path/to/project`. Inspect first with `--dry-run`. Existing managed installs are left intact when current; changed installs require `--overwrite`. Unrelated directories are never overwritten.
+[Figma to Claude to Code](skills/figma-to-claude-to-code/README.md) turns that idea into a scoped design contract. Claude exports it; I pass it to Codex, which checks the contract against the codebase before planning and implementing. The transfer is manual.
 
-See [the contract specification](skills/figma-to-claude-to-code/references/contract-spec.md) and [validation guide](skills/figma-to-claude-to-code/references/validation.md). Use only synthetic fixtures in this public collection. Keep real contracts, screenshots, assets, MCP output and target company source in an authorized private destination outside this repository. The `.gitignore` patterns here are a backstop, not permission to upload design data elsewhere.
+## What's on my mind
 
-No license has been selected for public redistribution. The owner should choose one before release.
+I keep the thinking behind these experiments in [Things on my mind](IDEAS.md). Some ideas will become useful tools. Others might stay notes. Both are welcome here.
+
+If something helps you, I'd love to hear how you used it. If something gets in your way, [open an issue](https://github.com/thai-ho/agent-skills/issues).
